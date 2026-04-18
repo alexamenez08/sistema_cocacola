@@ -32,7 +32,7 @@
 
     <div class="d-flex justify-content-end mb-2">
         <a href="{{ route('souvenirs.index') }}" class="btn btn-danger">
-            <i class="fa-solid fa-ban"></i> Regresar
+            <i class="fa-regular fa-circle-left"></i> Regresar
         </a>
     </div>
 

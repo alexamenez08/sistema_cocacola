@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Models\Souvenir;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\SouvenirController;
+use App\Http\Controllers\ColeccionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,6 +14,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('souvenirs', SouvenirController::class);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('colecciones', ColeccionController::class)->parameters([
+    'colecciones' => 'coleccion'
+]);
 });
 
 Route::get('/souvenirs/{id}/edit',[
@@ -51,8 +59,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin-dashboard', [
         AuthController::class, 'adminDashboard'
     ])->name('admin-dashboard');
-    
-    Route::get('/admin-registro', [
-        AuthController::class, 'registrarAdmin'
-    ])->name('admin-registro');
+
+    Route::resource('users', UserController::class);
+
 });

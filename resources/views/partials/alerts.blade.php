@@ -50,3 +50,26 @@
         }, 3000);
     </script>
 @endif
+
+@if(session('warning'))
+    <div id="alert-warning" class="alert alert-warning alert-dismissible d-flex align-items-center fade show">
+
+        <i class="fa-solid fa-triangle-exclamation me-2"></i>
+        <strong class="mx-2">¡Advertencia!</strong> {{ session('warning') }}
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            let alerta = document.getElementById('alert-warning');
+
+            if(alerta){
+                alerta.classList.remove('show');
+                alerta.classList.add('fade');
+                setTimeout(() => alerta.remove(), 500);
+            }
+
+        }, 3000);
+    </script>
+@endif

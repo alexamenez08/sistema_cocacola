@@ -16,6 +16,10 @@
             <i class="fa-solid fa-plus"></i> Nuevo souvenir
         </a>
 
+        <a href="{{ route('colecciones.index') }}" class="btn btn-info me-3">
+            <i class="fa-solid fa-list"></i> Ver colecciones
+        </a>
+
         <!-- Botón de cerrar sesion -->
         <form action="{{ route('cerrar') }}" method="POSt">
             @csrf
@@ -24,16 +28,11 @@
         
         @if(auth()->user()->is_admin)
             <a href="{{ route('admin-dashboard') }}" class="btn btn-secondary me-3">
-                Panel Admin
-            </a>
-
-            <a href="{{ route('admin-registro') }}" class="btn btn-secondary">
-                Registrar usuarios
+                Panel de administrador
             </a>
         @endif
     </div>
 
-    @include('partials.alerts')
     
     <br><br>
 
@@ -82,6 +81,19 @@
             @endforeach
         </tbody>
     </table>
+
+    <h2 class="mt-5"><b>Galería Coca-Cola</b></h2>
+    <div class="row mt-3">
+        @foreach($imagenes as $imagen)
+            <div class="col-md-4 mb-3">
+                <img 
+                    src="{{ $imagen['urls']['small'] }}" 
+                    alt="{{ $imagen['alt_description'] }}"
+                    class="img-fluid rounded shadow"
+                >
+            </div>
+        @endforeach
+    </div>
 
     @endsection
 </body>

@@ -34,10 +34,14 @@ class AuthController extends Controller
         //* iniciar sesion de forma automatica
         //Auth::login($user);
 
-        return redirect()->route('souvenirs.index');
+        return redirect()->route('auth.login');
     }
 
     public function loginForm(){
+        if (Auth::check()) {
+            return redirect()->route('souvenirs.index')
+            ->with('warning', 'Tienes una sesión activa.');
+        }
         return view('auth.login');
     }
 
@@ -78,7 +82,4 @@ class AuthController extends Controller
         return view('admin.dashboard');
     }
 
-    public function registrarAdmin(){
-        return view('admin.registro');
-    }
 }

@@ -15,7 +15,16 @@ class SouvenirController extends Controller
     {
         $souvenirs = Souvenir::all();
 
-        return view('souvenirs.index', compact('souvenirs'));
+        // Llamada a la API de Unsplash
+        $response = \Illuminate\Support\Facades\Http::get('https://api.unsplash.com/search/photos', [
+            'client_id' => config('services.unsplash.access_key'),
+            'query' => 'coca-cola',
+            'per_page' => 6,
+        ]);
+
+        $imagenes = $response->json()['results'] ?? [];
+
+        return view('souvenirs.index', compact('souvenirs', 'imagenes'));
     }
 
     /**

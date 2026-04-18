@@ -15,6 +15,7 @@
 <body>
 
     <div class="container p-5 my-5 border">
+        @include('partials.alerts')
         @yield('content')
     </div>
     

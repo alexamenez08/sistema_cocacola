@@ -15,8 +15,6 @@
         </a>
     </div>
 
-    @include('partials.alerts')
-
     <h1>REGISTRO</h1>
 
     <form action="{{ route('registro.store') }}" method="POST">
