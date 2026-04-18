@@ -34,7 +34,7 @@ class AuthController extends Controller
         //* iniciar sesion de forma automatica
         //Auth::login($user);
 
-        return redirect()->route('auth.login');
+        return redirect()->route('acceso')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
     }
 
     public function loginForm(){
